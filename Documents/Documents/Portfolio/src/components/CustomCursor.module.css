@@ -1,0 +1,86 @@
+.cursor {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              height 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.2s ease, 
+              background 0.2s ease,
+              opacity 0.2s ease;
+  opacity: 0;
+  mix-blend-mode: difference;
+  backdrop-filter: blur(1px);
+  will-change: transform;
+}
+
+.cursor.visible {
+  opacity: 0.7;
+}
+
+.cursor.hover {
+  width: 70px;
+  height: 70px;
+  border-color: var(--primary);
+  background: rgba(59, 130, 246, 0.15);
+  mix-blend-mode: normal;
+  backdrop-filter: blur(3px);
+}
+
+.cursor.clicking {
+  width: 35px;
+  height: 35px;
+  background: var(--primary);
+  border-color: var(--primary);
+  mix-blend-mode: normal;
+  opacity: 0.9;
+}
+
+.cursorDot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s cubic-bezier(0.4, 0, 0.2, 1), 
+              height 0.15s cubic-bezier(0.4, 0, 0.2, 1), 
+              background 0.15s ease, 
+              opacity 0.15s ease;
+  opacity: 0;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+.cursorDot.visible {
+  opacity: 1;
+}
+
+.cursorDot.hover {
+  width: 5px;
+  height: 5px;
+  background: white;
+  mix-blend-mode: normal;
+}
+
+.cursorDot.clicking {
+  width: 14px;
+  height: 14px;
+  background: var(--primary);
+  mix-blend-mode: normal;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+}
+
+/* Hide custom cursor on mobile/tablet or devices without hover */
+@media (max-width: 768px), (hover: none) {
+  .cursor,
+  .cursorDot {
+    display: none;
+  }
+}

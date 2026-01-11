@@ -1,0 +1,162 @@
+/* src/components/About.module.css */
+.about {
+  position: relative;
+}
+
+.heading {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.heading.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.bio p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.bio {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.bio.slideInLeft {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.education {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.eduCard {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateX(50px);
+  position: relative;
+  overflow: hidden;
+}
+
+.eduCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--primary);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+}
+
+.eduCard:hover::before {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+.eduCard.slideInRight {
+  opacity: 1;
+  transform: translateX(0);
+  animation: slideInRightAnim 0.6s ease forwards;
+}
+
+@keyframes slideInRightAnim {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.eduCard:hover {
+  border-color: var(--primary);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+}
+
+.eduHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.eduInstitution {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.eduYear {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.eduCard:hover .eduYear {
+  background: rgba(59, 130, 246, 0.2);
+  color: var(--primary);
+}
+
+.eduDegree {
+  color: var(--primary);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.eduGrade {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .bio {
+    transform: translateY(30px);
+  }
+
+  .bio.slideInLeft {
+    transform: translateY(0);
+  }
+
+  .eduCard {
+    transform: translateY(30px);
+  }
+
+  .eduCard.slideInRight {
+    transform: translateY(0);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+}
